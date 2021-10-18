@@ -5,7 +5,7 @@ Intro
 
 To create and configure a simple stattic website in S3 which consist files like HTML, CSS, JavaScript, fonts and image
 
-### **Create S3 Bucket**
+1 ### **Create S3 Bucket**
 
 1. Begin by navigating to the [GitHub repository for the code](https://github.com/ACloudGuru-Resources/Course-Certified-Solutions-Architect-Associate/tree/master/labs/creating-a-static-website-using-amazon-s3).
 2. Select the **error.html** file.
@@ -34,6 +34,43 @@ To create and configure a simple stattic website in S3 which consist files like 
 19. Click **Upload**.
 20. Click **Close** in the upper right.
 
+2. ### Enable Static Website hosting###
+
+1. Click the **Properties** tab.
+2. Scroll to the bottom of the screen to find the *Static website hosting* section.
+3. On the right in the *Static website hosting* section, click **Edit**.
+4. On the *Edit static website hosting* page, set the following values:
+    - *Static website hosting*: **Enable**
+    - *Hosting type*: **Host a static website**
+    - *Index document*: **index.html**
+    - *Error document*: **error.html**
+5. Scroll down, and click **Save changes**.
+6. Scroll back down to the *Static website hosting* section.
+7. Open the listed endpoint URL in a new browser tab. You'll see a `403 Forbidden` error message.
+
+3. ## Apply Bucket Policy ##
+
+1. Back in S3, click the **Permissions** tab.
+2. In the *Bucket policy* section, click **Edit**.
+3. In the *Policy* box, enter the following JSON statement (replacing `<BUCKET_ARN>` with the bucket ARN provided right above the *Policy* box):
+    
+    ```
+    {
+      "Version":"2012-10-17",
+      "Statement":[{
+         "Sid":"PublicReadGetObject",
+         "Effect":"Allow",
+         "Principal": "*",
+         "Action":["s3:GetObject"],
+         "Resource":["<BUCKET_ARN>/*"]
+      }]
+    }
+    ```
+    
+    > Note: Ensure the trailing /* is present so the policy applies to all objects within the bucket.
+    > 
+4. Click **Save changes**.
+5. Refresh the browser tab with the static website (the endpoint URL you opened a minute ago). This time, it should load the site correctly.
+6. Add a `/` at the end of the URL and some random letters (anything that's knowingly an error). This will display your `error.html` page.
 
 
-2. Enable Static Website hosting
