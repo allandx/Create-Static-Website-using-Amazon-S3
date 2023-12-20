@@ -5,7 +5,7 @@ Intro
 
 To create and configure a simple stattic website in S3 which consist files like HTML, CSS, JavaScript, fonts and image
 
-1 ### **Create S3 Bucket**
+Create S3 Bucket**
 
 1. Begin by navigating to the [GitHub repository for the code](https://github.com/ACloudGuru-Resources/Course-Certified-Solutions-Architect-Associate/tree/master/labs/creating-a-static-website-using-amazon-s3).
 2. Select the **error.html** file.
